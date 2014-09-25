@@ -8,17 +8,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define "linux32" do |linux32|
     linux32.vm.box = "ubuntu/trusty32"
+    linux32.vm.provision :shell, path: "build-linux.sh"
   end
 
   config.vm.define "linux64" do |linux64|
     linux64.vm.box = "ubuntu/trusty64"
+    linux64.vm.provision :shell, path: "build-linux.sh"
   end
 
   config.vm.provider "virtualbox" do |v|
-    v.memory = 8192
+    v.memory = 2048
   end
-
-  config.vm.provision :shell, path: "bootstrap.sh"
 
   # Every Vagrant virtual environment requires a box to build off of.
   # config.vm.box = "hashicorp/precise64"

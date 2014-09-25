@@ -3,7 +3,7 @@
 sudo apt-get -y install git make gcc g++ libgflags-dev libsnappy-dev zlib1g-dev libbz2-dev default-jdk
 
 # set java home so we can build rocksdb jars
-export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-i386
+export JAVA_HOME=$(echo /usr/lib/jvm/java-7-openjdk*)
 ARCH=$(uname -m)
 BUILD_ROOT=/vagrant/build
 BUILD_ARCH_DIR=$BUILD_ROOT/rocksdb-linux-$ARCH
@@ -15,6 +15,5 @@ git clone https://github.com/facebook/rocksdb.git $BUILD_ARCH_DIR
 
 # build rocksdb
 cd $BUILD_ARCH_DIR
-make rocksdbjavastatic
-sudo shutdown -h now
+make -j 4 rocksdbjavastatic
 
